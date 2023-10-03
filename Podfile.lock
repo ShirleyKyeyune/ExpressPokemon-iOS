@@ -1,0 +1,24 @@
+PODS:
+  - CocoaLumberjack/Core (3.8.1)
+  - CocoaLumberjack/Swift (3.8.1):
+    - CocoaLumberjack/Core
+  - SDWebImage (5.18.2):
+    - SDWebImage/Core (= 5.18.2)
+  - SDWebImage/Core (5.18.2)
+
+DEPENDENCIES:
+  - CocoaLumberjack/Swift
+  - SDWebImage (~> 5.0)
+
+SPEC REPOS:
+  trunk:
+    - CocoaLumberjack
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 5c7e64cdb877770859bddec4d3d5a0d7c9299df9
+  SDWebImage: c0de394d7cf7f9838aed1fd6bb6037654a4572e4
+
+PODFILE CHECKSUM: 6574aabd8bee972bfdef1a8c9fbd3ffeb69e53e8
+
+COCOAPODS: 1.13.0
