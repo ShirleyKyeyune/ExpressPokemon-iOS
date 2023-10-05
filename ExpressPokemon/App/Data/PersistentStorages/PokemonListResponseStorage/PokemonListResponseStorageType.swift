@@ -14,7 +14,7 @@ protocol PokemonListResponseStorageType {
 
     func save(_ item: PokemonListResponseDTO.PokemonResponseDTO)
 
-    func save(_ items: [PokemonListResponseDTO.PokemonResponseDTO])
+    func saveItems(_ items: [PokemonListResponseDTO.PokemonResponseDTO])
 
     func deleteByName(_ name: String)
 

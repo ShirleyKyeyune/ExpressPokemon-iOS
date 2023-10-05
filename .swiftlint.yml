@@ -4,6 +4,7 @@ excluded:
   - ${PWD}/Sources
   - ${PWD}/DerivedData
   - Vendor
+  - ${PWD}/ExpressPokemonTests/CuckooMocks/GeneratedMocks.swift
 
 disabled_rules:
   - discarded_notification_center_observer

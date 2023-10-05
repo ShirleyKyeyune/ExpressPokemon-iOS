@@ -133,3 +133,5 @@ fastlane/report.xml
 
 ## Personal IDE Settings and Cache
 *.iml
+
+ExpressPokemonTests/CuckooMocks/GeneratedMocks.swift

@@ -14,7 +14,11 @@ target 'ExpressPokemon' do
 
   target 'ExpressPokemonTests' do
     inherit! :search_paths
-    # Pods for testing
+
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'Cuckoo'
+    
   end
 
   target 'ExpressPokemonUITests' do

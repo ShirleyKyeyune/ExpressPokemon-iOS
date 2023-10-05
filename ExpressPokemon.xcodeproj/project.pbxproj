@@ -105,6 +105,9 @@
 		9E9966D72ACE4E6000E90FE4 /* CoreDataBatchDeleteModelsPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966D62ACE4E6000E90FE4 /* CoreDataBatchDeleteModelsPublisher.swift */; };
 		9E9966D92ACE566700E90FE4 /* PokemonViewModel+Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966D82ACE566700E90FE4 /* PokemonViewModel+Cache.swift */; };
 		9E9966DC2ACEEC1F00E90FE4 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966DB2ACEEC1F00E90FE4 /* Double+Extension.swift */; };
+		9E9966E32ACF10C700E90FE4 /* PokemonViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966E22ACF10C700E90FE4 /* PokemonViewModelTests.swift */; };
+		9E9966E62ACF19A300E90FE4 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966E52ACF19A300E90FE4 /* GeneratedMocks.swift */; };
+		9E9966E82ACF235200E90FE4 /* PokemonViewModel+SampleMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9966E72ACF235200E90FE4 /* PokemonViewModel+SampleMockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +231,9 @@
 		9E9966D62ACE4E6000E90FE4 /* CoreDataBatchDeleteModelsPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataBatchDeleteModelsPublisher.swift; sourceTree = "<group>"; };
 		9E9966D82ACE566700E90FE4 /* PokemonViewModel+Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonViewModel+Cache.swift"; sourceTree = "<group>"; };
 		9E9966DB2ACEEC1F00E90FE4 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		9E9966E22ACF10C700E90FE4 /* PokemonViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModelTests.swift; sourceTree = "<group>"; };
+		9E9966E52ACF19A300E90FE4 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		9E9966E72ACF235200E90FE4 /* PokemonViewModel+SampleMockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PokemonViewModel+SampleMockData.swift"; sourceTree = "<group>"; };
 		BFA409BCF02599B1DBD45E3C /* Pods-ExpressPokemon-ExpressPokemonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressPokemon-ExpressPokemonUITests.release.xcconfig"; path = "Target Support Files/Pods-ExpressPokemon-ExpressPokemonUITests/Pods-ExpressPokemon-ExpressPokemonUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D46C5DFF3BFEB23CBAA7E639 /* Pods-ExpressPokemonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressPokemonTests.debug.xcconfig"; path = "Target Support Files/Pods-ExpressPokemonTests/Pods-ExpressPokemonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4021A07D4983BDF98FA4B5B /* Pods_ExpressPokemon_ExpressPokemonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpressPokemon_ExpressPokemonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -312,6 +318,8 @@
 		9E9965C22ACC85CF00E90FE4 /* ExpressPokemonTests */ = {
 			isa = PBXGroup;
 			children = (
+				9E9966E42ACF19A300E90FE4 /* CuckooMocks */,
+				9E9966DF2ACF108900E90FE4 /* Presentation */,
 				9E9965C32ACC85CF00E90FE4 /* ExpressPokemonTests.swift */,
 			);
 			path = ExpressPokemonTests;
@@ -823,6 +831,39 @@
 			path = DataExtensions;
 			sourceTree = "<group>";
 		};
+		9E9966DF2ACF108900E90FE4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				9E9966E02ACF109C00E90FE4 /* PokemonList */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		9E9966E02ACF109C00E90FE4 /* PokemonList */ = {
+			isa = PBXGroup;
+			children = (
+				9E9966E12ACF10AE00E90FE4 /* ViewModel */,
+			);
+			path = PokemonList;
+			sourceTree = "<group>";
+		};
+		9E9966E12ACF10AE00E90FE4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E9966E22ACF10C700E90FE4 /* PokemonViewModelTests.swift */,
+				9E9966E72ACF235200E90FE4 /* PokemonViewModel+SampleMockData.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9E9966E42ACF19A300E90FE4 /* CuckooMocks */ = {
+			isa = PBXGroup;
+			children = (
+				9E9966E52ACF19A300E90FE4 /* GeneratedMocks.swift */,
+			);
+			path = CuckooMocks;
+			sourceTree = "<group>";
+		};
 		ADF4C0F5EF41BAE78041FB53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -861,9 +902,11 @@
 			buildConfigurationList = 9E9965D62ACC85CF00E90FE4 /* Build configuration list for PBXNativeTarget "ExpressPokemonTests" */;
 			buildPhases = (
 				C04262BF1CD5DD5FC480A48D /* [CP] Check Pods Manifest.lock */,
+				9E9966DE2ACF0A9B00E90FE4 /* Cuckoo for Mocking during Tests */,
 				9E9965BB2ACC85CF00E90FE4 /* Sources */,
 				9E9965BC2ACC85CF00E90FE4 /* Frameworks */,
 				9E9965BD2ACC85CF00E90FE4 /* Resources */,
+				4BC801994EBB8B32E8CD4A19 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1004,6 +1047,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpressPokemon-ExpressPokemonUITests/Pods-ExpressPokemon-ExpressPokemonUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4BC801994EBB8B32E8CD4A19 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpressPokemonTests/Pods-ExpressPokemonTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpressPokemonTests/Pods-ExpressPokemonTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpressPokemonTests/Pods-ExpressPokemonTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8F2C99E946653C4CE9717070 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1061,6 +1121,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Adds support for Apple Silicon brew directory\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		9E9966DE2ACF0A9B00E90FE4 /* Cuckoo for Mocking during Tests */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}/App/DI/DIContainer.swift",
+				"${PROJECT_DIR}/${PROJECT_NAME}/App/Data/Repositories/Interfaces/PokemonRepositoryType.swift",
+				"${PROJECT_DIR}/${PROJECT_NAME}/App/Data/PersistentStorages/PokemonListResponseStorage/PokemonListResponseStorageType.swift",
+			);
+			name = "Cuckoo for Mocking during Tests";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${PROJECT_DIR}/${PROJECT_NAME}Tests/CuckooMocks/GeneratedMocks.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Cuckoo - Started.\"\n\nif [ $ACTION == \"indexbuild\" ]; then\n  echo \"Not running Cuckoo generator during indexing.\"\n  exit 0\nfi\n\n# Skip for preview builds\nif [ \"${ENABLE_PREVIEWS}\" = \"YES\" ]; then\n  echo \"Not running Cuckoo generator during preview builds.\"\n  exit 0\nfi\n\n# Define output file. Change \"${PROJECT_DIR}/${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/CuckooMocks/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory. Change \"${PROJECT_DIR}/${PROJECT_NAME}\" to your project's root source folder, if it's not the default name.\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PODS_ROOT}/Cuckoo/run\" generate --testable \"${PROJECT_NAME}\" --no-header --no-timestamp --output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/App/DI/DIContainer.swift\" \\\n\"${INPUT_DIR}/App/Data/Repositories/Interfaces/PokemonRepositoryType.swift\" \\\n\"${INPUT_DIR}/App/Data/PersistentStorages/PokemonListResponseStorage/PokemonListResponseStorageType.swift\"\n\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
 		};
 		C04262BF1CD5DD5FC480A48D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1188,6 +1271,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9966E32ACF10C700E90FE4 /* PokemonViewModelTests.swift in Sources */,
+				9E9966E62ACF19A300E90FE4 /* GeneratedMocks.swift in Sources */,
+				9E9966E82ACF235200E90FE4 /* PokemonViewModel+SampleMockData.swift in Sources */,
 				9E9965C42ACC85CF00E90FE4 /* ExpressPokemonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

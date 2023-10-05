@@ -1,6 +1,0 @@
-framework module Pods_ExpressPokemon {
-  umbrella header "Pods-ExpressPokemon-umbrella.h"
-
-  export *
-  module * { export * }
-}
