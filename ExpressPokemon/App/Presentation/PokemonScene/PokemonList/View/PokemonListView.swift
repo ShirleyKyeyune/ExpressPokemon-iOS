@@ -18,9 +18,26 @@ protocol PokemonListViewType: UIView {
     func showEmptyView()
     func showSearchEmptyView()
     func showErrorView()
+    func addNewItems(newPokemons: [Pokemon])
 }
 
 class PokemonListView: UIView {
+    let bottomStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
+    let loadingMoreStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
     internal var loadingView: LoadingView = {
         let loadingView = LoadingView()
         loadingView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,7 +107,15 @@ class PokemonListView: UIView {
         // Setup the collection view
         addSubview(collectionView)
         addSubview(loadingView)
-        addSubview(loadingMoreView)
+
+        let spacerView = UIView()
+        let anotherSpacerView = UIView()
+        loadingMoreStackView.addArrangedSubview(spacerView)
+        loadingMoreStackView.addArrangedSubview(loadingMoreView)
+        loadingMoreStackView.addArrangedSubview(anotherSpacerView)
+        bottomStackView.addArrangedSubview(loadingMoreStackView)
+        addSubview(bottomStackView)
+
         addSubview(emptyView)
         addSubview(searchEmptyView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,12 +123,18 @@ class PokemonListView: UIView {
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: UISize.pt80),
 
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            loadingMoreView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            loadingMoreView.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            loadingMoreStackView.heightAnchor.constraint(equalToConstant: UISize.pt18),
+            spacerView.widthAnchor.constraint(equalTo: anotherSpacerView.widthAnchor),
+
+            bottomStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            bottomStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: UISize.pt12),
+
             emptyView.centerXAnchor.constraint(equalTo: centerXAnchor),
             emptyView.centerYAnchor.constraint(equalTo: centerYAnchor),
             searchEmptyView.centerXAnchor.constraint(equalTo: centerXAnchor),

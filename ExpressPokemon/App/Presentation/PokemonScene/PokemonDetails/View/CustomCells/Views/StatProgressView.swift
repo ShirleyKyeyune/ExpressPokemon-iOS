@@ -47,6 +47,7 @@ class StatProgressView: UIView {
 
     func setProgress(_ progress: Float) {
         progressBar.progress = progress
-        percentageLabel.text = "\(Double(progress * 100))%"
+        let percentage = Double(progress * 100).roundedTwoDecimalsString
+        percentageLabel.text = "\(percentage)%"
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 extension PokemonViewModel: PokemonViewModelType {
     var pageTitle: String {
@@ -17,6 +18,10 @@ extension PokemonViewModel: PokemonViewModelType {
             return []
         }
         return pokemons
+    }
+
+    var shouldFetchMoreItems: Bool {
+        !isFetchingMore && pokemonsList.count < maximumItemCount && !isSearching
     }
 
     func transform(input: AnyPublisher<InputEvent, Never>) -> AnyPublisher<OutputEvent, Never> {
@@ -34,12 +39,20 @@ extension PokemonViewModel: PokemonViewModelType {
                 pokemons?.removeAll()
                 self.fetchPokemons()
 
-            case .loadMore(let lastScrollPosition):
-                self.lastScrollPosition = lastScrollPosition
+            case .loadMore:
+                self.isFetchingMore = true
                 self.fetchPokemons(self.nextPage)
 
             case .searchFired(let term):
+                self.isSearching = true
                 self.searchPokemons(term)
+
+            case .beginSearch:
+                self.isSearching = true
+
+            case .cancelSearch:
+                self.isSearching = false
+                outputEvents.send(.searchResults(pokemons: pokemonsList))
             }
         }
         .store(in: &cancellables)
@@ -73,24 +86,43 @@ extension PokemonViewModel: PokemonViewModelType {
                     self?.outputEvents.send(.showEmpty)
                     return
                 }
-                let pokemonPage = results.toDomain()
-                let pokemonList = pokemonPage.result
-                self.nextPage = pokemonPage.next
-                if self.pokemons == nil {
-                    self.pokemons = pokemonList
-                    // save locally
-                    saveCachePokemons(results)
-                } else {
-                    self.pokemons?.append(contentsOf: pokemonList)
-                }
-
-                if let pokemonList = self.pokemons {
-                    self.outputEvents.send(.fetchListDidSucceed(pokemons: pokemonList))
-                } else {
-                    self.outputEvents.send(.showEmpty)
-                }
+                self.handleResults(results: results)
             }
             .store(in: &cancellables)
+    }
+
+    func handleResults(results: PokemonListResponseDTO) {
+        let domainResults = results.toDomain()
+        updateNextPage(from: domainResults)
+        updatePokemons(with: domainResults.result, cacheData: results)
+        sendAppropriateOutputEvent(for: domainResults)
+    }
+
+    private func updateNextPage(from domainResults: PokemonPage) {
+        nextPage = domainResults.next
+    }
+
+    private func updatePokemons(with newPokemons: [Pokemon], cacheData: PokemonListResponseDTO) {
+        if pokemons == nil {
+            pokemons = newPokemons
+            saveCachePokemons(cacheData)
+        } else {
+            pokemons?.append(contentsOf: newPokemons)
+        }
+    }
+
+    private func sendAppropriateOutputEvent(for domainResults: PokemonPage) {
+        guard let currentPokemons = pokemons else {
+            outputEvents.send(.showEmpty)
+            return
+        }
+
+        if isFetchingMore {
+            isFetchingMore = false
+            outputEvents.send(.addNewResults(newPokemons: domainResults.result))
+        } else {
+            outputEvents.send(.fetchListDidSucceed(pokemons: currentPokemons))
+        }
     }
 
     func searchPokemons(_ term: String) {
@@ -102,6 +134,7 @@ extension PokemonViewModel: PokemonViewModelType {
 
         if lowercasedTerm.isEmpty {
             outputEvents.send(.searchResults(pokemons: allPokemons))
+            isSearching = false
             return
         }
 

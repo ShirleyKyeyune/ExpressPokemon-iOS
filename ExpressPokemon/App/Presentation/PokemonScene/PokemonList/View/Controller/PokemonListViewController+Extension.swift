@@ -54,6 +54,21 @@ import UIKit
     }
  }
 
+extension PokemonListViewController: UIScrollViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let mainView = mainView as? PokemonListView else { return }
+
+        let lastItem = mainView.pokemons.count - 1
+
+        if indexPath.item == lastItem {
+            // If we are not already fetching more items, fetch more.
+            guard viewModel.shouldFetchMoreItems else { return }
+
+            // Trigger data fetching
+            input.send(.loadMore)
+        }
+    }
+}
 
 extension PokemonListViewController {
     func didFailWithError(error: Error) {

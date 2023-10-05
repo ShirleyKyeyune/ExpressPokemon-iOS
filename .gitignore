@@ -5,6 +5,8 @@
 ## Build generated
 build/
 DerivedData/
+*.xcworkspacedata
+*xcshareddata
 
 ## Ignore when build
 .DS_Store

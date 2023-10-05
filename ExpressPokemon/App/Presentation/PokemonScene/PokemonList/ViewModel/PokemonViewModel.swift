@@ -11,6 +11,8 @@ import Combine
 protocol PokemonViewModelType {
     var pageTitle: String { get }
     var pokemonsList: [Pokemon] { get }
+    var isSearching: Bool { get set }
+    var shouldFetchMoreItems: Bool { get }
 
     func transform(input: AnyPublisher<PokemonViewModel.InputEvent, Never>) -> AnyPublisher<PokemonViewModel.OutputEvent, Never>
 
@@ -23,7 +25,9 @@ class PokemonViewModel: ObservableObject {
     enum InputEvent {
         case viewDidAppear
         case refreshListFired
-        case loadMore(lastScrollPosition: Int)
+        case loadMore
+        case beginSearch
+        case cancelSearch
         case searchFired(term: String)
 
         static func == (lhs: InputEvent, rhs: InputEvent) -> Bool {
@@ -32,6 +36,8 @@ class PokemonViewModel: ObservableObject {
             case (.refreshListFired, .refreshListFired): return true
             case (.loadMore, .loadMore): return true
             case (.searchFired, .searchFired): return true
+            case (.beginSearch, .beginSearch): return true
+            case (.cancelSearch, .cancelSearch): return true
             default: return false
             }
         }
@@ -45,6 +51,7 @@ class PokemonViewModel: ObservableObject {
         case showLoadingMoreView(showLoading: Bool)
         case searchResults(pokemons: [Pokemon])
         case showEmptySearchResults
+        case addNewResults(newPokemons: [Pokemon])
 
         static func == (lhs: OutputEvent, rhs: OutputEvent) -> Bool {
             switch (lhs, rhs) {
@@ -55,6 +62,7 @@ class PokemonViewModel: ObservableObject {
             case (.showLoadingMoreView, .showLoadingMoreView): return true
             case (.searchResults, .searchResults): return true
             case (.showEmptySearchResults, .showEmptySearchResults): return true
+            case (.addNewResults, .addNewResults): return true
             default: return false
             }
         }
@@ -68,8 +76,10 @@ class PokemonViewModel: ObservableObject {
     internal let pokemonCacheRepository: PokemonListResponseStorageType
     internal var nextPage: String?
     internal var pokemons: [Pokemon]?
-    internal var lastScrollPosition: Int = 0
     internal var filteredPokemons: [Pokemon] = []
+    let maximumItemCount = 100
+    var isFetchingMore = false
+    var isSearching = false
 
     init(
         pokemonRepository: PokemonRepositoryType? = DIContainer.shared

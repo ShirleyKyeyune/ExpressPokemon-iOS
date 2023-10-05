@@ -79,7 +79,7 @@ extension PokemonDetailResponseDTO.PokemonStatResponseDTO {
 // MARK: - Mappings to Domain
 
 extension PokemonDetailResponseDTO {
-    func toDomain() -> PokemonDetail? {
+    func toDomain() -> PokemonDetail {
         let abilities = abilities ?? []
         let types = types ?? []
         let stats = stats ?? []
