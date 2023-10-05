@@ -15,8 +15,7 @@ struct PokemonDetailsDataRequest: NetworkTarget {
     }
 
     var baseURLEnv: BaseURLEnvironment {
-        // TODO: switch to live API
-        .local
+        .production
     }
 
     var path: String? {
