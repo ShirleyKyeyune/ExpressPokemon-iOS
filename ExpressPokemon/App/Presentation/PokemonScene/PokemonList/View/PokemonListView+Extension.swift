@@ -25,7 +25,7 @@ extension PokemonListView: PokemonListViewType {
         searchEmptyView.isHidden = true
         emptyView.isHidden = true
         loadingView.isHidden = !isVisible
-        loadingMoreView.isHidden = true
+        loadingMoreStackView.isHidden = true
         collectionView.isHidden = isVisible
     }
 
@@ -33,8 +33,8 @@ extension PokemonListView: PokemonListViewType {
         searchBar.isHidden = isVisible
         searchEmptyView.isHidden = true
         emptyView.isHidden = true
-        loadingView.isHidden = false
-        loadingMoreView.isHidden = !isVisible
+        loadingView.isHidden = true
+        loadingMoreStackView.isHidden = !isVisible
         collectionView.isHidden = false
     }
 
@@ -43,7 +43,7 @@ extension PokemonListView: PokemonListViewType {
         searchEmptyView.isHidden = true
         emptyView.isHidden = false
         loadingView.isHidden = true
-        loadingMoreView.isHidden = true
+        loadingMoreStackView.isHidden = true
         collectionView.isHidden = true
     }
 
@@ -52,7 +52,7 @@ extension PokemonListView: PokemonListViewType {
         searchEmptyView.isHidden = false
         emptyView.isHidden = true
         loadingView.isHidden = true
-        loadingMoreView.isHidden = true
+        loadingMoreStackView.isHidden = true
         collectionView.isHidden = true
     }
 
@@ -64,5 +64,26 @@ extension PokemonListView: PokemonListViewType {
         loadingMoreView.isHidden = true
         collectionView.isHidden = true
         emptyView.setEmptyLabelText(Constants.AppState.error)
+    }
+
+    func addNewItems(newPokemons: [Pokemon]) {
+        let currentItemCount = pokemons.count
+        let newItemCount = currentItemCount + newPokemons.count
+
+        var indexPaths = [IndexPath]([])
+        for index in currentItemCount..<newItemCount {
+            indexPaths.append(IndexPath(item: index, section: 0))
+        }
+
+        pokemons.append(contentsOf: newPokemons)
+
+        collectionView.performBatchUpdates({
+            collectionView.insertItems(at: indexPaths)
+        }, completion: nil)
+
+        showLoadingMoreView(isVisible: false)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }

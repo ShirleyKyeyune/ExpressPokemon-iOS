@@ -28,8 +28,10 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
                     matchData.url = item.url
                     matchData.name = item.name
                 } else {
-                    let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DBName.pokemonEntity,
-                                                                   into: self.coreDataManager.viewContext)
+                    let coin = NSEntityDescription.insertNewObject(
+                        forEntityName: Constants.DBName.pokemonEntity,
+                        into: self.coreDataManager.viewContext
+                    )
                     coin.setValue(item.url, forKey: "url")
                     coin.setValue(item.name, forKey: "name")
                 }
@@ -45,8 +47,10 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
                 matchData.url = item.url
                 matchData.name = item.name
             } else {
-                let coin = NSEntityDescription.insertNewObject(forEntityName: Constants.DBName.pokemonEntity,
-                                                               into: self.coreDataManager.viewContext)
+                let coin = NSEntityDescription.insertNewObject(
+                    forEntityName: Constants.DBName.pokemonEntity,
+                    into: self.coreDataManager.viewContext
+                )
                 coin.setValue(item.url, forKey: "url")
                 coin.setValue(item.name, forKey: "name")
             }
@@ -142,14 +146,14 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
 
     func batchDelete(byNames names: [String]? = nil) {
         var predicate: NSPredicate?
-            if let names = names, !names.isEmpty {
-                predicate = NSPredicate(format: "name IN %@", names)
-            }
+        if let names = names, !names.isEmpty {
+            predicate = NSPredicate(format: "name IN %@", names)
+        }
 
-            let publisher = CoreDataBatchDeleteModelsPublisher<PokemonEntity>(
-                delete: predicate,
-                context: self.coreDataManager.viewContext
-            )
+        let publisher = CoreDataBatchDeleteModelsPublisher<PokemonEntity>(
+            delete: predicate,
+            context: self.coreDataManager.viewContext
+        )
 
         publisher
             .receive(on: DispatchQueue.main)

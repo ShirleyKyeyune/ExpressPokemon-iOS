@@ -91,6 +91,9 @@ class PokemonListViewController: UIViewController {
                 case .fetchListDidSucceed(let pokemons):
                     self.mainView.updateData(pokemons: pokemons)
 
+                case .addNewResults(let newPokemons):
+                    self.mainView.addNewItems(newPokemons: newPokemons)
+
                 case .fetchListDidFail(let error):
                     logApp(error.localizedDescription)
                     self.mainView.showErrorView()

@@ -31,7 +31,7 @@ extension PokemonDetailViewModel: PokemonDetailViewModelType {
     var abilities: [String] {
         guard let abilities = pokemonDetail?.abilities,
               !abilities.isEmpty else {
-            return ["Jump", "Crowl", "Bike", "Climb"]
+            return []
         }
         let list = abilities.compactMap {
             $0.isHidden ? $0.name.capitalized : nil
