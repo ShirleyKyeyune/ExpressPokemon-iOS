@@ -100,3 +100,34 @@ ExpressPokemonTests/Snapshots/FailureDiffs
 .ruby-version
 
 .credentials
+
+# Additional Entries
+
+## Xcode and Swift generated files
+*.xcodeproj/project.xcworkspace/xcshareddata/
+*.xcodeproj/project.xcworkspace/xcshareddata/
+
+## Provisioning and Distribution
+*.provisionprofile
+
+## Miscellaneous
+*.bak
+.AppleDouble
+.LSOverride
+
+## Logs and Reports
+*.log
+*.tmp
+
+## Custom folders commonly used but may vary
+Assets.xcassets/*.playground/
+fastlane/report.xml
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Personal IDE Settings and Cache
+*.iml
