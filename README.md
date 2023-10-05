@@ -23,8 +23,13 @@ Express Pokemon is a simple Pokemon app, built with UIKit and Combine framework,
 ## Third-party libraries
 
     pod 'SDWebImage', '~> 5.0'
-
     pod 'CocoaLumberjack/Swift'
+
+    TESTS
+    
+    pod 'Quick'
+    pod 'Nimble'
+    pod 'Cuckoo'
 
 ## How to run
 
@@ -47,6 +52,7 @@ Express Pokemon requires iOS 14.0 or later.
 
 - Display list of Pokemons
 - Display Pokemon Details
+- Load more items during scrolling (pagination)
 - Cache images
 - Cache Data (available even when offline) using CoreData
 - Searching
