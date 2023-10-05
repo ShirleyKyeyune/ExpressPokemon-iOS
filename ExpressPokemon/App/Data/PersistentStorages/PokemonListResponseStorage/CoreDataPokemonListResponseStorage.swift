@@ -21,7 +21,7 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
         self.coreDataManager = coreDataManager
     }
 
-    func save(_ items: [PokemonListResponseDTO.PokemonResponseDTO]) {
+    func saveItems(_ items: [PokemonListResponseDTO.PokemonResponseDTO]) {
         let action: Action = {
             items.forEach { item in
                 if let name = item.name, let matchData = self.findByName(name) {

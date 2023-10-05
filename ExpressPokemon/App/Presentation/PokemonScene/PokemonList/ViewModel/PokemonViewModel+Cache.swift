@@ -12,7 +12,7 @@ extension PokemonViewModel {
         guard let items = pokemonResponse.results else {
             return
         }
-        pokemonCacheRepository.save(items)
+        pokemonCacheRepository.saveItems(items)
     }
 
     func deleteAllCachedPokemons() {
