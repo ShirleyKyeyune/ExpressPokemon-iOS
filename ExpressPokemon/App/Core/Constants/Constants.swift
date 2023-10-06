@@ -16,6 +16,7 @@ enum Constants {
         static let mainTitle: String = "Express Pokemon"
         static let failure: String = "Failure!"
         static let tryAgain: String = "Try again"
+        static let cancel: String = "Cancel"
     }
     enum PlaceHolder {
         static let search: String = "Search Pokemon"

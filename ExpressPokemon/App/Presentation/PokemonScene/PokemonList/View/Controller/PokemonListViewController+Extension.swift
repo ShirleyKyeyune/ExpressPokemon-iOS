@@ -72,15 +72,20 @@ extension PokemonListViewController: UIScrollViewDelegate {
 
 extension PokemonListViewController {
     func didFailWithError(error: Error) {
-        let alert = AlertViewBuilder()
+        let builder = AlertViewBuilder()
+        let alert = builder
+            .erase()
             .build(title: Constants.Title.failure, message: error.localizedDescription, preferredStyle: .alert)
-            .build(title: Constants.Title.tryAgain, style: .default) {_ in
-                self.errorSubject.send()
+            .buildAction(title: Constants.Title.tryAgain, style: .default) { [weak self] (_: UIAlertAction) in
+                print("OK button tapped.")
+                guard let `self` = self else {
+                    return
+                }
+                self.input.send(.refreshListFired)
             }
+            .buildAction(title: Constants.Title.cancel, style: .cancel, handler: nil)
             .content
 
-        DispatchQueue.main.async {
-            self.present(alert, animated: true)
-        }
+        self.present(alert, animated: true)
     }
 }

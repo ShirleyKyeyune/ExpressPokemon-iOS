@@ -70,13 +70,12 @@ extension PokemonViewModel: PokemonViewModelType {
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     // use cached data
-                    if let pokemonList = self?.fetchAllCachedPokemons() {
+                    if let pokemonList = self?.fetchAllCachedPokemons(), !pokemonList.isEmpty {
                         infoLog("Using Cached DATA")
                         self?.outputEvents.send(.fetchListDidSucceed(pokemons: pokemonList))
                     } else {
                         self?.outputEvents.send(.fetchListDidFail(error: error))
                     }
-                    self?.cancellables.removeAll()
                 }
             } receiveValue: { [weak self] results in
                 guard let `self` = self,
