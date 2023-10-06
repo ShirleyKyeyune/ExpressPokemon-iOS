@@ -71,10 +71,10 @@ class PokemonDetailView: UIView {
         ])
 
         // Register custom cells
-        tableView.register(HeroImageTableViewCell.self, forCellReuseIdentifier: "HeroImageTableViewCell")
-        tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")
-        tableView.register(StatsTableViewCell.self, forCellReuseIdentifier: "StatsTableViewCell")
-        tableView.register(AbilitiesTableViewCell.self, forCellReuseIdentifier: "AbilitiesTableViewCell")
+        tableView.register(HeroImageTableViewCell.self, forCellReuseIdentifier: Constants.Cells.heroImageTableViewCell)
+        tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: Constants.Cells.detailTableViewCell)
+        tableView.register(StatsTableViewCell.self, forCellReuseIdentifier: Constants.Cells.statsTableViewCell)
+        tableView.register(AbilitiesTableViewCell.self, forCellReuseIdentifier: Constants.Cells.abilitiesTableViewCell)
 
         showLoadingView(isVisible: false)
         // to move past the navigation bar

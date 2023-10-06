@@ -22,7 +22,7 @@ class CardView: UIView {
 
     private func  initialSetup() {
         layer.cornerRadius = 10.0
-        layer.masksToBounds = false // Note: If you're using shadows, you should set this to false.
+        layer.masksToBounds = false // Note: When using shadows, we should set this to false.
 
         // Shadow settings
         layer.shadowColor = UIColor.black.cgColor

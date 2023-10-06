@@ -10,8 +10,8 @@ import UIKit
 class AbilitiesTableViewCell: UITableViewCell {
     let headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "Abilities"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.text = Constants.Labels.abilities
+        label.font = UIFont.systemFont(ofSize: AppSizes.textLarge, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -26,8 +26,8 @@ class AbilitiesTableViewCell: UITableViewCell {
 
     let noAbilitiesLabel: UILabel = {
         let label = UILabel()
-        label.text = "No abilities available"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = Constants.Labels.abilitiesNotAvailable
+        label.font = UIFont.systemFont(ofSize: AppSizes.textMedium)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,7 +36,7 @@ class AbilitiesTableViewCell: UITableViewCell {
     let abilityStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = UISize.pt24
+        stackView.spacing = AppSizes.paddingSmall
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -60,19 +60,19 @@ class AbilitiesTableViewCell: UITableViewCell {
 
         headerLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         bodyStackView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        let constraint = bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UISize.pt12)
+        let constraint = bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: AppSizes.paddingMini)
         constraint.priority = UILayoutPriority(999)
         constraint.isActive = true
 
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            headerLabel.heightAnchor.constraint(equalToConstant: UISize.pt24),
+            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppSizes.paddingSmall),
+            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppSizes.paddingSmall),
+            headerLabel.heightAnchor.constraint(equalToConstant: AppSizes.cellHeaderHeight),
 
-            bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UISize.pt12),
-            bodyStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            bodyStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            bodyStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: AppSizes.paddingMini),
+            bodyStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppSizes.paddingSmall),
+            bodyStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -AppSizes.paddingSmall),
+            bodyStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -AppSizes.paddingSmall)
         ])
     }
 

@@ -60,7 +60,6 @@ class PokemonDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
-        title = "Pokemon Details"
 
         // to hide top area
         edgesForExtendedLayout = [.top]
@@ -86,10 +85,10 @@ class PokemonDetailViewController: UIViewController {
         // Set the button's constraints.
         backButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
-            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            backButton.widthAnchor.constraint(equalToConstant: 40),
-            backButton.heightAnchor.constraint(equalToConstant: 40)
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppSizes.navPaddingMini),
+            backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: AppSizes.navPaddingMini),
+            backButton.widthAnchor.constraint(equalToConstant: AppSizes.backButtonHeight),
+            backButton.heightAnchor.constraint(equalToConstant: AppSizes.backButtonHeight)
         ])
     }
 

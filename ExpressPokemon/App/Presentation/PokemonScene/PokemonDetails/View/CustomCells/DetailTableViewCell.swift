@@ -10,7 +10,7 @@ import UIKit
 class DetailTableViewCell: UITableViewCell {
     let heightLabel: UILabel = {
         let label = UILabel()
-        label.text = "Height:"
+        label.text = Constants.Labels.height
         label.textColor = UIColor.gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -25,7 +25,7 @@ class DetailTableViewCell: UITableViewCell {
 
     let weightLabel: UILabel = {
         let label = UILabel()
-        label.text = "Weight:"
+        label.text = Constants.Labels.weight
         label.textColor = UIColor.gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,7 +40,7 @@ class DetailTableViewCell: UITableViewCell {
 
     let typesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Types:"
+        label.text = Constants.Labels.types
         label.textColor = UIColor.gray
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -79,7 +79,7 @@ class DetailTableViewCell: UITableViewCell {
         typesStackView.distribution = .fill
         let mainStackView = UIStackView(arrangedSubviews: [heightStackView, weightStackView, typesStackView])
         mainStackView.axis = .vertical
-        mainStackView.spacing = 8
+        mainStackView.spacing = AppSizes.paddingMini
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(mainStackView)
@@ -89,10 +89,10 @@ class DetailTableViewCell: UITableViewCell {
             weightSpacerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
             typeSpacerView.widthAnchor.constraint(greaterThanOrEqualToConstant: 0),
 
-            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16)
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppSizes.textMedium),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -AppSizes.textMedium),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppSizes.textMedium),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -AppSizes.textMedium)
         ])
     }
 

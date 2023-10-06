@@ -15,8 +15,4 @@ extension PokemonDetailCoordinator: PokemonDetailViewDelegate {
     func viewWillAppear(in viewController: PokemonDetailViewController) {
         // no-op
     }
-
-    func didSelectItem(pokemon: Pokemon, in viewController: PokemonDetailViewController) {
-        // TODO: - move to details
-    }
 }
