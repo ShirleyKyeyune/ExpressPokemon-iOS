@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         AppStyle.applyStyle()
-        let navigationController = UINavigationController()
+        let navigationController = NavigationController()
 
         navigationController.navigationBar.barStyle = .black
 

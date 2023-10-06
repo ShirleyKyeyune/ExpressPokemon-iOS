@@ -36,7 +36,6 @@ extension PokemonDetail {
     struct PokemonAbility: Decodable {
         let name: String
         let url: String
-        let isHidden: Bool
         let slot: Int
     }
 }
