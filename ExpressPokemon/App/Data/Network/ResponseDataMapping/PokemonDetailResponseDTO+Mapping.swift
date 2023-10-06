@@ -35,11 +35,6 @@ extension PokemonDetailResponseDTO {
     struct PokemonAbilityResponseDTO: Decodable {
         let ability: PokemonAbilityDetailResponseDTO?
         let slot: Int?
-
-        enum CodingKeys: String, CodingKey {
-            case ability = "ability"
-            case slot = "slot"
-        }
     }
 
     struct PokemonAbilityDetailResponseDTO: Decodable {
@@ -80,20 +75,6 @@ extension PokemonDetailResponseDTO.PokemonStatResponseDTO {
     }
 }
 
-extension PokemonDetailResponseDTO.PokemonAbilityResponseDTO {
-    func decode(from decoder: Decoder) throws -> Self {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        let ability = try container.decodeIfPresent(PokemonDetailResponseDTO.PokemonAbilityDetailResponseDTO.self, forKey: .ability)
-        let slot = try container.decodeIfPresent(
-            Int.self,
-            forKey: .slot
-        )
-
-        return Self(ability: ability, slot: slot)
-    }
-}
-
 // MARK: - Mappings to Domain
 
 extension PokemonDetailResponseDTO {
@@ -125,6 +106,7 @@ extension PokemonDetailResponseDTO.PokemonTypeResponseDTO {
         }
 
         return PokemonDetail.PokemonType(
+            id: "\(slot)",
             slot: slot,
             type: type
         )
@@ -139,6 +121,7 @@ extension PokemonDetailResponseDTO.PokemonTypeDetailResponseDTO {
         }
 
         return PokemonDetail.PokemonTypeDetail(
+            id: name,
             name: name,
             url: url
         )
@@ -154,7 +137,7 @@ extension PokemonDetailResponseDTO.PokemonStatResponseDTO {
         }
         let progress = (Float(baseStat) / 100.0)
 
-        return PokemonDetail.PokemonStat(name: name, progress: progress)
+        return PokemonDetail.PokemonStat(id: name, name: name, progress: progress)
     }
 }
 
@@ -167,6 +150,7 @@ extension PokemonDetailResponseDTO.PokemonAbilityResponseDTO {
         }
 
         return PokemonDetail.PokemonAbility(
+            id: name,
             name: name,
             url: url,
             slot: slot
