@@ -30,13 +30,24 @@ final class NetworkClient: NetworkClientType {
                        scheduler: T,
                        responseObject type: M.Type) -> AnyPublisher<M, APIError> where M: Decodable, T: Scheduler {
         guard let urlRequest = request.buildURLRequest() else {
-            return Fail(error: APIError.clientError)
+            let error = APIError.clientError
+            errorLog(error)
+            return Fail(error: error)
                         .eraseToAnyPublisher()
         }
+        infoLog(urlRequest)
+
         return publisher(request: urlRequest)
             .receive(on: scheduler)
             .tryMap { result, _ -> Data in
-                result
+                guard let json = try? JSONSerialization.jsonObject(with: result, options: []) else {
+                    // This is not JSON data; you may want to handle the error or just return the data as-is
+                    return result
+                }
+
+                infoLog("JSON Response: \(json)")
+
+                return result
             }
             .decode(type: type.self, decoder: decoder)
             .mapError { error in
@@ -45,21 +56,26 @@ final class NetworkClient: NetworkClientType {
             .eraseToAnyPublisher()
     }
 
+
     func publisher(request: URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), APIError> {
         self.session.dataTaskPublisher(for: request)
             .mapError { APIError.urlError($0) }
             .map { response -> AnyPublisher<(data: Data, response: URLResponse), APIError> in
                 guard let httpResponse = response.response as? HTTPURLResponse else {
-                    return Fail(error: APIError.invalidResponse(httpStatusCode: 0))
+                    let error = APIError.invalidResponse(httpStatusCode: 0)
+                    errorLog(error.localizedDescription)
+                    return Fail(error: error)
                         .eraseToAnyPublisher()
                 }
 
                 if !httpResponse.isResponseOK {
                     let error = NetworkClient.errorType(forStatusCode: httpResponse.statusCode)
+                    errorLog(error.localizedDescription)
                     return Fail(error: error)
                         .eraseToAnyPublisher()
                 }
 
+                infoLog(response.response)
                 return Just(response)
                     .setFailureType(to: APIError.self)
                     .eraseToAnyPublisher()

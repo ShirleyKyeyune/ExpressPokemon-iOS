@@ -34,8 +34,12 @@ extension PokemonDetailResponseDTO {
 
     struct PokemonAbilityResponseDTO: Decodable {
         let ability: PokemonAbilityDetailResponseDTO?
-        let isHidden: Bool?
         let slot: Int?
+
+        enum CodingKeys: String, CodingKey {
+            case ability = "ability"
+            case slot = "slot"
+        }
     }
 
     struct PokemonAbilityDetailResponseDTO: Decodable {
@@ -73,6 +77,20 @@ extension PokemonDetailResponseDTO.PokemonStatResponseDTO {
         )
 
         return Self(baseStat: baseStat, effort: effort, stat: stat)
+    }
+}
+
+extension PokemonDetailResponseDTO.PokemonAbilityResponseDTO {
+    func decode(from decoder: Decoder) throws -> Self {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        let ability = try container.decodeIfPresent(PokemonDetailResponseDTO.PokemonAbilityDetailResponseDTO.self, forKey: .ability)
+        let slot = try container.decodeIfPresent(
+            Int.self,
+            forKey: .slot
+        )
+
+        return Self(ability: ability, slot: slot)
     }
 }
 
@@ -144,7 +162,6 @@ extension PokemonDetailResponseDTO.PokemonAbilityResponseDTO {
     func toDomain() -> PokemonDetail.PokemonAbility? {
         guard let name = ability?.name,
               let url = ability?.url,
-              let isHidden = isHidden,
               let slot = slot else {
             return nil
         }
@@ -152,7 +169,6 @@ extension PokemonDetailResponseDTO.PokemonAbilityResponseDTO {
         return PokemonDetail.PokemonAbility(
             name: name,
             url: url,
-            isHidden: isHidden,
             slot: slot
         )
     }

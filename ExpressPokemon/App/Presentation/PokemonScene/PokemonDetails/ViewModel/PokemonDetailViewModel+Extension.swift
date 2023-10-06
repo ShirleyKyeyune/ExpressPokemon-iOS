@@ -34,7 +34,7 @@ extension PokemonDetailViewModel: PokemonDetailViewModelType {
             return []
         }
         let list = abilities.compactMap {
-            $0.isHidden ? $0.name.capitalized : nil
+            $0.name.capitalized
         }
         return list
     }
