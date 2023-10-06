@@ -10,7 +10,7 @@ import UIKit
 class LoadingView: UIView {
     private var mainStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = UISize.pt32
+        stackView.spacing = AppSizes.paddingMedium
         stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ class LoadingView: UIView {
         label.textAlignment = .center
         label.text = Constants.AppState.loading
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: UISize.pt16)
+        label.font = UIFont.systemFont(ofSize: AppSizes.textMedium)
         return label
     }()
 
@@ -49,9 +49,9 @@ class LoadingView: UIView {
     // MARK: - Private functions
 
     private func setupConstraints() {
-        mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: UISize.pt4).isActive = true
+        mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: AppSizes.paddingMicro).isActive = true
         mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UISize.pt20).isActive = true
-        mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UISize.pt20).isActive = true
+        mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AppSizes.paddingSmall).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -AppSizes.paddingSmall).isActive = true
     }
 }

@@ -22,7 +22,7 @@ class HeroImageTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: AppSizes.textExtraLarge, weight: .bold)
         label.textColor = .white
         return label
     }()
@@ -61,10 +61,10 @@ class HeroImageTableViewCell: UITableViewCell {
             translucentBackgroundView.leadingAnchor.constraint(equalTo: heroImageView.leadingAnchor),
             translucentBackgroundView.trailingAnchor.constraint(equalTo: heroImageView.trailingAnchor),
             translucentBackgroundView.bottomAnchor.constraint(equalTo: heroImageView.bottomAnchor),
-            translucentBackgroundView.heightAnchor.constraint(equalToConstant: 50),
+            translucentBackgroundView.heightAnchor.constraint(equalToConstant: AppSizes.translucentHeaderHeight),
 
-            titleLabel.leadingAnchor.constraint(equalTo: translucentBackgroundView.leadingAnchor, constant: 16),
-            titleLabel.bottomAnchor.constraint(equalTo: translucentBackgroundView.bottomAnchor, constant: -8)
+            titleLabel.leadingAnchor.constraint(equalTo: translucentBackgroundView.leadingAnchor, constant: AppSizes.paddingMini),
+            titleLabel.bottomAnchor.constraint(equalTo: translucentBackgroundView.bottomAnchor, constant: -AppSizes.paddingMini)
         ])
     }
 

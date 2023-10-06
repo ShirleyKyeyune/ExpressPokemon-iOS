@@ -47,10 +47,10 @@ class PokemonCell: UICollectionViewCell {
 
         // Configure cellNameLabel
         cellNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        cellNameLabel.text = "Label"
+        cellNameLabel.text = ""
         cellNameLabel.textAlignment = .center
         cellNameLabel.textColor = .white
-        cellNameLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        cellNameLabel.font = UIFont.boldSystemFont(ofSize: AppSizes.textMedium)
 
         // Configure cellImageView
         cellImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,15 +66,15 @@ class PokemonCell: UICollectionViewCell {
             cellContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
 
             // Constraints for cellImageView
-            cellImageView.topAnchor.constraint(equalTo: cellContainerView.topAnchor, constant: 16),
+            cellImageView.topAnchor.constraint(equalTo: cellContainerView.topAnchor, constant: AppSizes.textMedium),
             cellImageView.centerXAnchor.constraint(equalTo: cellContainerView.centerXAnchor),
-            cellImageView.widthAnchor.constraint(equalToConstant: 100),
-            cellImageView.heightAnchor.constraint(equalToConstant: 100),
+            cellImageView.widthAnchor.constraint(equalToConstant: AppSizes.cellImageViewHeight),
+            cellImageView.heightAnchor.constraint(equalToConstant: AppSizes.cellImageViewHeight),
 
             // Constraints for cellNameLabel
-            cellNameLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: 24),
+            cellNameLabel.topAnchor.constraint(equalTo: cellImageView.bottomAnchor, constant: AppSizes.cellNameLabelHeight),
             cellNameLabel.centerXAnchor.constraint(equalTo: cellContainerView.centerXAnchor),
-            cellNameLabel.heightAnchor.constraint(equalToConstant: 21)
+            cellNameLabel.heightAnchor.constraint(equalToConstant: AppSizes.cellNameLabelHeight)
         ])
     }
 
@@ -86,8 +86,4 @@ class PokemonCell: UICollectionViewCell {
             }
         }
     }
-
-//    func getPokemonImageURL(baseURL: ImageBaseURL, pokemonID: String) -> String {
-//        String(format: baseURL.url, pokemonID)
-//    }
 }

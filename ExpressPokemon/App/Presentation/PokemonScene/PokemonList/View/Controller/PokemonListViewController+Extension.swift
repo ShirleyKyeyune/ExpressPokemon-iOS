@@ -15,7 +15,7 @@ import UIKit
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokemonCell", for: indexPath) as? PokemonCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Cells.pokemonCell, for: indexPath) as? PokemonCell
         cell?.tag = indexPath.item
         guard let cell = cell,
               let mainView = mainView as? PokemonListView,
@@ -73,8 +73,8 @@ extension PokemonListViewController: UIScrollViewDelegate {
 extension PokemonListViewController {
     func didFailWithError(error: Error) {
         let alert = AlertViewBuilder()
-            .build(title: "Failure!", message: error.localizedDescription, preferredStyle: .alert)
-            .build(title: "Try again", style: .default) {_ in
+            .build(title: Constants.Title.failure, message: error.localizedDescription, preferredStyle: .alert)
+            .build(title: Constants.Title.tryAgain, style: .default) {_ in
                 self.errorSubject.send()
             }
             .content

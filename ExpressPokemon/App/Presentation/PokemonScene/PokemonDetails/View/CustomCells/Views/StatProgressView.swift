@@ -17,7 +17,7 @@ class StatProgressView: UIView {
     let percentageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: UISize.pt12)
+        label.font = UIFont.systemFont(ofSize: AppSizes.textSmall)
         return label
     }()
 
@@ -36,7 +36,7 @@ class StatProgressView: UIView {
         addSubview(percentageLabel)
 
         NSLayoutConstraint.activate([
-            progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UISize.pt40),
+            progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AppSizes.statProgressBarPadding),
             progressBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             progressBar.centerYAnchor.constraint(equalTo: centerYAnchor),
 

@@ -10,7 +10,7 @@ import UIKit
 class EmptyView: UIView {
     private var mainStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.spacing = UISize.pt32
+        stackView.spacing = AppSizes.paddingMedium
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,15 +63,13 @@ class EmptyView: UIView {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: UISize.pt4),
+            mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: AppSizes.paddingMini),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UISize.pt20),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UISize.pt20),
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AppSizes.paddingSmall),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -AppSizes.paddingSmall),
 
-            emptyImageView.widthAnchor.constraint(equalToConstant: UISize.pt200),
-            emptyImageView.heightAnchor.constraint(equalToConstant: UISize.pt200)
-
-            // emptyLabel.heightAnchor.constraint(equalToConstant: 30)
+            emptyImageView.widthAnchor.constraint(equalToConstant: AppSizes.emptyImageViewWidth),
+            emptyImageView.heightAnchor.constraint(equalToConstant: AppSizes.emptyImageViewWidth)
         ])
     }
 

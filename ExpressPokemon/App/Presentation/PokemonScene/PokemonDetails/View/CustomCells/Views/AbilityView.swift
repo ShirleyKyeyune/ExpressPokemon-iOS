@@ -17,7 +17,7 @@ class AbilityView: UIView {
     let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = UISize.pt24
+        stackView.spacing = AppSizes.paddingSmall
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -25,7 +25,7 @@ class AbilityView: UIView {
     let abilityLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: UISize.pt16)
+        label.font = UIFont.systemFont(ofSize: AppSizes.textMedium)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
@@ -48,8 +48,8 @@ class AbilityView: UIView {
         NSLayoutConstraint.activate([
             icon.centerXAnchor.constraint(equalTo: iconContainer.centerXAnchor),
             icon.centerYAnchor.constraint(equalTo: iconContainer.centerYAnchor),
-            icon.widthAnchor.constraint(equalToConstant: UISize.pt24),
-            icon.heightAnchor.constraint(equalToConstant: UISize.pt24)
+            icon.widthAnchor.constraint(equalToConstant: AppSizes.abilityIconHeight),
+            icon.heightAnchor.constraint(equalToConstant: AppSizes.abilityIconHeight)
         ])
 
         let spacer = UIView()
@@ -60,10 +60,10 @@ class AbilityView: UIView {
         addSubview(stackView)
 
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UISize.pt12),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UISize.pt12),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: AppSizes.paddingMini),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -AppSizes.paddingMini),
             stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: UISize.pt12)
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: AppSizes.paddingMini)
         ])
 
         configureIcon(UIImage(named: "ability_ico"), for: icon)

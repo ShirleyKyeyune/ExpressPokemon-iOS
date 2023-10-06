@@ -41,7 +41,7 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     private func configureHeroImageCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "HeroImageTableViewCell",
+            withIdentifier: Constants.Cells.heroImageTableViewCell,
             for: indexPath
         ) as? HeroImageTableViewCell,
               let pokemon = mainView.viewModel?.pokemon else {
@@ -61,7 +61,7 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     private func configureDetailCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "DetailTableViewCell",
+            withIdentifier: Constants.Cells.detailTableViewCell,
             for: indexPath
         ) as? DetailTableViewCell,
               let viewModel = mainView.viewModel,
@@ -76,7 +76,7 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     private func configureAbilitiesCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "AbilitiesTableViewCell",
+            withIdentifier: Constants.Cells.abilitiesTableViewCell,
             for: indexPath
         ) as? AbilitiesTableViewCell,
               let viewModel = mainView.viewModel else {
@@ -88,7 +88,7 @@ extension PokemonDetailViewController: UITableViewDelegate, UITableViewDataSourc
 
     private func configureStatsCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "StatsTableViewCell",
+            withIdentifier: Constants.Cells.statsTableViewCell,
             for: indexPath
         ) as? StatsTableViewCell,
               let viewModel = mainView.viewModel,

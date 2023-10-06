@@ -10,8 +10,8 @@ import UIKit
 class StatsTableViewCell: UITableViewCell {
     let headerLabel: UILabel = {
         let label = UILabel()
-        label.text = "Stats"
-        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.text = Constants.Labels.stats
+        label.font = UIFont.systemFont(ofSize: AppSizes.textLarge, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -27,7 +27,7 @@ class StatsTableViewCell: UITableViewCell {
     let statsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = AppSizes.paddingMini
         stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -35,8 +35,8 @@ class StatsTableViewCell: UITableViewCell {
 
     let noStatsLabel: UILabel = {
         let label = UILabel()
-        label.text = "No Stats available"
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.text = Constants.Labels.statsNotAvailable
+        label.font = UIFont.systemFont(ofSize: AppSizes.textMedium)
         label.textColor = .gray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -61,19 +61,19 @@ class StatsTableViewCell: UITableViewCell {
 
         headerLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         bodyStackView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        let constraint = bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UISize.pt12)
+        let constraint = bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: AppSizes.paddingMini)
         constraint.priority = UILayoutPriority(999)
         constraint.isActive = true
 
         NSLayoutConstraint.activate([
-            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            headerLabel.heightAnchor.constraint(equalToConstant: UISize.pt24),
+            headerLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppSizes.paddingSmall),
+            headerLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppSizes.paddingSmall),
+            headerLabel.heightAnchor.constraint(equalToConstant: AppSizes.cellHeaderHeight),
 
-            bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UISize.pt12),
-            bodyStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            bodyStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            bodyStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
+            bodyStackView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: AppSizes.paddingMini),
+            bodyStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppSizes.paddingSmall),
+            bodyStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -AppSizes.paddingSmall),
+            bodyStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -AppSizes.paddingSmall)
         ])
     }
 
@@ -93,7 +93,7 @@ class StatsTableViewCell: UITableViewCell {
             for stat in stats {
                 let statLabel = UILabel()
                 statLabel.text = stat.name
-                statLabel.widthAnchor.constraint(equalToConstant: UISize.pt132).isActive = true
+                statLabel.widthAnchor.constraint(equalToConstant: AppSizes.statLabelWidth).isActive = true
 
                 let statProgressView = StatProgressView()
                 statProgressView.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +101,7 @@ class StatsTableViewCell: UITableViewCell {
 
                 let rowStackView = UIStackView(arrangedSubviews: [statLabel, statProgressView])
                 rowStackView.axis = .horizontal
-                rowStackView.spacing = 8
+                rowStackView.spacing = AppSizes.paddingMini
 
                 statsStackView.addArrangedSubview(rowStackView)
             }

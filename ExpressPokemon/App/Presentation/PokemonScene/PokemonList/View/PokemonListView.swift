@@ -123,17 +123,17 @@ class PokemonListView: UIView {
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: UISize.pt80),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: AppSizes.paddingLarge),
 
             loadingView.centerXAnchor.constraint(equalTo: centerXAnchor),
             loadingView.centerYAnchor.constraint(equalTo: centerYAnchor),
 
-            loadingMoreStackView.heightAnchor.constraint(equalToConstant: UISize.pt18),
+            loadingMoreStackView.heightAnchor.constraint(equalToConstant: AppSizes.loadMoreHeight),
             spacerView.widthAnchor.constraint(equalTo: anotherSpacerView.widthAnchor),
 
             bottomStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             bottomStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: UISize.pt12),
+            bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: AppSizes.paddingMini),
 
             emptyView.centerXAnchor.constraint(equalTo: centerXAnchor),
             emptyView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -142,7 +142,7 @@ class PokemonListView: UIView {
         ])
 
         // Register cell
-        collectionView.register(PokemonCell.self, forCellWithReuseIdentifier: "PokemonCell")
+        collectionView.register(PokemonCell.self, forCellWithReuseIdentifier: Constants.Cells.pokemonCell)
 
         showLoadingView(isVisible: false)
     }
@@ -155,7 +155,7 @@ class PokemonListView: UIView {
     /// Required for the collectionView to display on the screen
     func setupCollectionViewFlowLayout() {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let padding: CGFloat = 20
+            let padding: CGFloat = AppSizes.paddingSmall
             let availableWidth = frame.width - (padding * 3)
             let widthPerItem = availableWidth / 2
 
