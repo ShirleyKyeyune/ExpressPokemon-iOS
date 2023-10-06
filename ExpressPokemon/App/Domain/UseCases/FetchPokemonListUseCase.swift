@@ -12,13 +12,12 @@ final class FetchPokemonListUseCase: PokemonListUseCaseType {
     private let nextPageUrl: String?
     private let pokemonRepository: PokemonRepositoryType
 
-    init(
+    init?(
         nextPageUrl: String? = nil,
-        pokemonRepository: PokemonRepositoryType? = DIContainer.shared
-            .inject(type: PokemonRepositoryType.self)
-    ) throws {
+        pokemonRepository: PokemonRepositoryType? = injected(PokemonRepositoryType.self)
+    ) {
         guard let pokemonRepository = pokemonRepository else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.nextPageUrl = nextPageUrl
         self.pokemonRepository = pokemonRepository

@@ -81,15 +81,13 @@ class PokemonViewModel: ObservableObject {
     var isFetchingMore = false
     var isSearching = false
 
-    init(
-        pokemonRepository: PokemonRepositoryType? = DIContainer.shared
-        .inject(type: PokemonRepositoryType.self),
-        pokemonCacheRepository: PokemonListResponseStorageType? = DIContainer.shared
-        .inject(type: PokemonListResponseStorageType.self)
-    ) throws {
+    init?(
+        pokemonRepository: PokemonRepositoryType? = injected(PokemonRepositoryType.self),
+        pokemonCacheRepository: PokemonListResponseStorageType? = injected(PokemonListResponseStorageType.self)
+    ) {
         guard let pokemonRepository = pokemonRepository,
               let pokemonCacheRepository = pokemonCacheRepository else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.pokemonRepository = pokemonRepository
         self.pokemonCacheRepository = pokemonCacheRepository

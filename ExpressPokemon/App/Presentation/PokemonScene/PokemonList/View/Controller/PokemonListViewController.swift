@@ -95,7 +95,7 @@ class PokemonListViewController: UIViewController {
                     self.mainView.addNewItems(newPokemons: newPokemons)
 
                 case .fetchListDidFail(let error):
-                    logApp(error.localizedDescription)
+                    errorLog(error.localizedDescription)
                     self.mainView.showErrorView()
                     self.didFailWithError(error: error)
 
