@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct PokemonDetail: Decodable {
-    let id: Int
+struct PokemonDetail: Identifiable {
+    typealias Identifier = Int
+
+    let id: Identifier
     let name: String
     let height: Int
     let weight: Int
@@ -17,25 +19,57 @@ struct PokemonDetail: Decodable {
     let stats: [PokemonStat]
 }
 
+extension PokemonDetail: Equatable {
+    static func == (lhs: PokemonDetail, rhs: PokemonDetail) -> Bool {
+        lhs.id == rhs.id &&
+               lhs.name == rhs.name &&
+               lhs.height == rhs.height &&
+               lhs.weight == rhs.weight &&
+               lhs.types == rhs.types &&
+               lhs.abilities == rhs.abilities &&
+               lhs.stats == rhs.stats
+    }
+}
+
 extension PokemonDetail {
-    struct PokemonType: Decodable {
+    struct PokemonType: Identifiable {
+        typealias Identifier = String
+
+        let id: Identifier
         let slot: Int
         let type: PokemonTypeDetail?
     }
 
-    struct PokemonTypeDetail: Decodable {
+    struct PokemonTypeDetail: Equatable, Identifiable {
+        typealias Identifier = String
+
+        let id: Identifier
         let name: String
         let url: String
     }
 
-    struct PokemonStat: Decodable {
+    struct PokemonStat: Equatable, Identifiable {
+        typealias Identifier = String
+
+        let id: Identifier
         let name: String
         let progress: Float
     }
 
-    struct PokemonAbility: Decodable {
+    struct PokemonAbility: Equatable, Identifiable {
+        typealias Identifier = String
+
+        let id: Identifier
         let name: String
         let url: String
         let slot: Int
+    }
+}
+
+extension PokemonDetail.PokemonType: Equatable {
+    static func == (lhs: PokemonDetail.PokemonType, rhs: PokemonDetail.PokemonType) -> Bool {
+        lhs.id == rhs.id &&
+               lhs.slot == rhs.slot &&
+               lhs.type == rhs.type
     }
 }
