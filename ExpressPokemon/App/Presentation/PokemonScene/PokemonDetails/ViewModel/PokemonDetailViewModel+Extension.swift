@@ -69,7 +69,6 @@ extension PokemonDetailViewModel: PokemonDetailViewModelType {
             .sink { [weak self] completion in
                 if case .failure(let error) = completion {
                     self?.outputEvents.send(.fetchDetailDidFail(error: error))
-                    self?.cancellables.removeAll()
                 }
             } receiveValue: { [weak self] detail in
                 guard let `self` = self else {

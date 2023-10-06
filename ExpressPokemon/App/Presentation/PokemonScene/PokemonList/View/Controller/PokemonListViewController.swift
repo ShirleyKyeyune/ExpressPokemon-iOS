@@ -18,7 +18,6 @@ class PokemonListViewController: UIViewController {
     var viewModel: PokemonViewModelType
     let input: PassthroughSubject<PokemonViewModel.InputEvent, Never> = .init()
     let searchTextSubject = PassthroughSubject<String, Never>()
-    let errorSubject = PassthroughSubject<Void, Never>()
 
     private var cancellables = Set<AnyCancellable>()
     private var searchCancellable: AnyCancellable?
@@ -124,14 +123,5 @@ class PokemonListViewController: UIViewController {
                 }
                 self.input.send(.searchFired(term: term))
             }
-
-        errorSubject
-            .sink { [weak self] in
-                guard let `self` = self else {
-                    return
-                }
-                self.input.send(.refreshListFired)
-            }
-            .store(in: &cancellables)
     }
 }
