@@ -12,6 +12,10 @@ protocol DIContainerProtocol {
     func inject<Service>(type: Service.Type) -> Service?
 }
 
+func injected<Service>(_ type: Service.Type) -> Service? {
+    DIContainer.shared.inject(type: type)
+}
+
 final class DIContainer: DIContainerProtocol {
     static let shared = DIContainer()
 

@@ -14,9 +14,9 @@ class NetworkingClientManager<K: RequestBuilder> {
     // The session client is utilised to initiate requests using URLSession Data Task Publisher
     private let sessionClient: NetworkClientType
 
-    init(sessionClient: NetworkClientType? = DIContainer.shared.inject(type: NetworkClientType.self)) throws {
+    init?(sessionClient: NetworkClientType? = injected(NetworkClientType.self)) {
         guard let sessionClient = sessionClient else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.sessionClient = sessionClient
     }

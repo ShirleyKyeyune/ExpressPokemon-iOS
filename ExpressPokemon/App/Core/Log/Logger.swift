@@ -9,23 +9,33 @@ import Foundation
 import CocoaLumberjack
 
 public func debugLog(_ message: Any, _ logger: Logger = DDLogger.instance, callerFunctionName: String = #function) {
+#if DEBUG
     logger.debug("\(message) from: \(callerFunctionName)")
+#endif
 }
 
 public func infoLog(_ message: Any, _ logger: Logger = DDLogger.instance, callerFunctionName: String = #function) {
+#if DEBUG
     logger.info("\(message) from: \(callerFunctionName)")
+#endif
 }
 
 public func warnLog(_ message: Any, _ logger: Logger = DDLogger.instance, callerFunctionName: String = #function) {
+#if DEBUG
     logger.warn("\(message) from: \(callerFunctionName)")
+#endif
 }
 
 public func verboseLog(_ message: Any, _ logger: Logger = DDLogger.instance, callerFunctionName: String = #function) {
+#if DEBUG
     logger.verbose("\(message) from: \(callerFunctionName)")
+#endif
 }
 
 public func errorLog(_ message: Any, _ logger: Logger = DDLogger.instance, callerFunctionName: String = #function) {
+#if DEBUG
     logger.error("\(message) from: \(callerFunctionName)")
+#endif
 }
 
 public protocol Logger {

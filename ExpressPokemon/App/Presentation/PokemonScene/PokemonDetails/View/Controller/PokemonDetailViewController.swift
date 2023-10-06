@@ -122,7 +122,7 @@ class PokemonDetailViewController: UIViewController {
                     self.mainView.updateData(viewModel: viewModel)
 
                 case .fetchDetailDidFail(let error):
-                    logApp(error.localizedDescription)
+                    errorLog(error.localizedDescription)
                     self.mainView.showErrorView()
 
                 case .showLoadingView(let isVisible):

@@ -12,13 +12,12 @@ final class FetchPokemonDetailsUseCase: PokemonDetailsUseCaseType {
     private let id: Int
     private let pokemonRepository: PokemonRepositoryType
 
-    init(
+    init?(
         id: Int,
-        pokemonRepository: PokemonRepositoryType? = DIContainer.shared
-            .inject(type: PokemonRepositoryType.self)
+        pokemonRepository: PokemonRepositoryType? = injected(PokemonRepositoryType.self)
     ) throws {
         guard let pokemonRepository = pokemonRepository else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.id = id
         self.pokemonRepository = pokemonRepository

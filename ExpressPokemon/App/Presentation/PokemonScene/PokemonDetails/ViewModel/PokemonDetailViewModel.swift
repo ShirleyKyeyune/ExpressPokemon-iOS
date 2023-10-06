@@ -55,13 +55,12 @@ class PokemonDetailViewModel: ObservableObject {
     internal var pokemonDetail: PokemonDetail?
     internal let pokemon: Pokemon
 
-    init(
+    init?(
         pokemon: Pokemon,
-        pokemonRepository: PokemonRepositoryType? = DIContainer.shared
-        .inject(type: PokemonRepositoryType.self)
-    ) throws {
+        pokemonRepository: PokemonRepositoryType? = injected(PokemonRepositoryType.self)
+    ) {
         guard let pokemonRepository = pokemonRepository else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.pokemon = pokemon
         self.pokemonRepository = pokemonRepository

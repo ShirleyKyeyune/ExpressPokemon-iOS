@@ -71,7 +71,7 @@ extension PokemonViewModel: PokemonViewModelType {
                 if case .failure(let error) = completion {
                     // use cached data
                     if let pokemonList = self?.fetchAllCachedPokemons() {
-                        logApp("Using Cached DATA")
+                        infoLog("Using Cached DATA")
                         self?.outputEvents.send(.fetchListDidSucceed(pokemons: pokemonList))
                     } else {
                         self?.outputEvents.send(.fetchListDidFail(error: error))

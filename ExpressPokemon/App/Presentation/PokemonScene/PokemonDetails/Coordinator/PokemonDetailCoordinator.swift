@@ -23,14 +23,12 @@ class PokemonDetailCoordinator: NSObject, Coordinator {
 
     func start(pokemon: Pokemon) {
         DispatchQueue.main.async {
-            do {
-                let viewModel = try PokemonDetailViewModel(pokemon: pokemon)
-                let controller = PokemonDetailViewController(viewModel: viewModel)
-                controller.delegate = self
-                self.navigationController.pushViewController(controller, animated: true)
-            } catch {
-                logApp(error.localizedDescription)
+            guard let viewModel = PokemonDetailViewModel(pokemon: pokemon) else {
+                return
             }
+            let controller = PokemonDetailViewController(viewModel: viewModel)
+            controller.delegate = self
+            self.navigationController.pushViewController(controller, animated: true)
         }
     }
 }

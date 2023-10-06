@@ -11,9 +11,9 @@ import Combine
 final class PokemonRepository: PokemonRepositoryType {
     private let service: PokemonDataRemoteServiceType
 
-    init(service: PokemonDataRemoteServiceType? = DIContainer.shared.inject(type: PokemonDataRemoteServiceType.self)) throws {
+    init?(service: PokemonDataRemoteServiceType? = injected(PokemonDataRemoteServiceType.self)) {
         guard let service = service else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.service = service
     }

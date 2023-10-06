@@ -29,14 +29,12 @@ class MainCoordinator: NSObject, Coordinator {
 
     func start() {
         DispatchQueue.main.async {
-            do {
-                let viewModel = try PokemonViewModel()
-                let controller = PokemonListViewController(viewModel: viewModel)
-                controller.delegate = self
-                self.navigationController.pushViewController(controller, animated: false)
-            } catch {
-                logApp(error.localizedDescription)
+            guard let viewModel = PokemonViewModel() else {
+                return
             }
+            let controller = PokemonListViewController(viewModel: viewModel)
+            controller.delegate = self
+            self.navigationController.pushViewController(controller, animated: false)
         }
     }
 }

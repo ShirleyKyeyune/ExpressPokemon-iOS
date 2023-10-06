@@ -14,9 +14,9 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
     var cancellables = Set<AnyCancellable>()
 
 
-    init(coreDataManager: CoreDataManagerProtocol? = DIContainer.shared.inject(type: CoreDataManagerProtocol.self)) throws {
+    init?(coreDataManager: CoreDataManagerProtocol? = injected(CoreDataManagerProtocol.self)) {
         guard let coreDataManager = coreDataManager else {
-            throw DIError.serviceNotFound
+            return nil
         }
         self.coreDataManager = coreDataManager
     }
@@ -66,14 +66,14 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    logApp("Core Data Operation Failure: \(error)")
+                    errorLog("Core Data Operation Failure: \(error)")
 
                 case .finished:
-                    logApp("Completion")
+                    infoLog("Completion")
                 }
             } receiveValue: { success in
                 if success {
-                    logApp("Core Data Operation Done")
+                    infoLog("Core Data Operation Done")
                 }
             }
             .store(in: &cancellables)
@@ -87,10 +87,10 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    logApp("FetchData Failure: \(error)")
+                    errorLog("FetchData Failure: \(error)")
 
                 case .finished:
-                    logApp("Completion")
+                    infoLog("Completion")
                 }
             } receiveValue: { value in
                 output.append(contentsOf: value)
@@ -109,10 +109,10 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    logApp("FetchData Failure: \(error)")
+                    errorLog("FetchData Failure: \(error)")
 
                 case .finished:
-                    logApp("Completion")
+                    infoLog("Completion")
                 }
             } receiveValue: { value in
                 output = value.first
@@ -134,10 +134,10 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    logApp("Delete Failure: \(error)")
+                    errorLog("Delete Failure: \(error)")
 
                 case .finished:
-                    logApp("Completion")
+                    infoLog("Completion")
                 }
             } receiveValue: { _ in
             }
@@ -160,14 +160,14 @@ final class CoreDataPokemonListResponseStorage: PokemonListResponseStorageType {
             .sink { completion in
                 switch completion {
                 case .failure(let error):
-                    logApp("Batch Delete Failure: \(error)")
+                    errorLog("Batch Delete Failure: \(error)")
 
                 case .finished:
-                    logApp("Batch Delete Completion")
+                    infoLog("Batch Delete Completion")
                 }
             } receiveValue: { result in
                 if let deletedCount = result.result as? Int {
-                    logApp("Batch Delete Done, deleted \(deletedCount) items")
+                    infoLog("Batch Delete Done, deleted \(deletedCount) items")
                 }
             }
             .store(in: &cancellables)
